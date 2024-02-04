@@ -18,6 +18,8 @@ import PageTitle from "../../components/PageTitle";
 import {FetchResult, gql, useMutation} from "@apollo/client";
 import {LoginResult, Mutation} from "../../gql/graphql";
 import {logInUser} from "../../apollo";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 const Form = styled.form`
   display: flex;
@@ -35,11 +37,13 @@ const LOGIN_MUTATION = gql`
   }
 `;
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
-    formState: {errors, isValid},
     getValues,
+    formState: {errors, isValid},
     setError,
     clearErrors,
   } = useForm<IInputValues>();
@@ -66,15 +70,22 @@ const Login = () => {
     if (!data.data?.login.ok) {
       return;
     }
-    window.location.reload();
   };
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      navigate(routerName.home, {replace: true});
+    });
+  }, []);
   return (
     <>
       <PageTitle title="로그인" />
       <AuthLayer
         children={
           <LoginFormCont>
-            <Title title="SNS LOG IN" />
+            <div>
+              <Title title="SNS LOG IN" />
+              <div>{location.state?.message}</div>
+            </div>
             <LoginFormImg>
               <div>PIC</div>
             </LoginFormImg>

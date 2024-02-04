@@ -184,201 +184,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CreateCommentResult",
-        "description": null,
-        "fields": [
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "DeleteCommentResult",
-        "description": null,
-        "fields": [
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "DeletePhotoResult",
-        "description": null,
-        "fields": [
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "EditPhotoResult",
-        "description": null,
-        "fields": [
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "FollowUserResult",
-        "description": null,
-        "fields": [
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "Hashtag",
         "description": null,
         "fields": [
@@ -756,7 +561,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CreateCommentResult",
+                "name": "MutationResponse",
                 "ofType": null
               }
             },
@@ -882,7 +687,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DeleteCommentResult",
+                "name": "MutationResponse",
                 "ofType": null
               }
             },
@@ -915,7 +720,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DeletePhotoResult",
+                "name": "MutationResponse",
                 "ofType": null
               }
             },
@@ -964,7 +769,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "editCommentResult",
+                "name": "MutationResponse",
                 "ofType": null
               }
             },
@@ -1010,7 +815,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "EditPhotoResult",
+              "name": "MutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1116,7 +921,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "FollowUserResult",
+              "name": "MutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1284,7 +1089,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "toggleLikePhotoResult",
+              "name": "MutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1313,7 +1118,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "UnfollowUserResult",
+              "name": "MutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1783,6 +1588,22 @@
             "deprecationReason": null
           },
           {
+            "name": "seeMyProfile",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "seePhoto",
             "description": null,
             "args": [
@@ -2155,27 +1976,10 @@
           {
             "name": "avatar",
             "description": null,
-            "args": [
-              {
-                "name": "file",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Upload",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
+            "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Upload",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3579,45 +3383,6 @@
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "toggleLikePhotoResult",
-        "description": null,
-        "fields": [
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null

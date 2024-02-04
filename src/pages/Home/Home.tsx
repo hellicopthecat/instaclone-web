@@ -1,4 +1,6 @@
+import Layout from "../../components/Layout";
+
 const Home = () => {
-  return <div>homepage</div>;
+  return <Layout children={<div>homepage</div>} />;
 };
 export default Home;

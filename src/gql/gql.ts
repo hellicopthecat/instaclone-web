@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n  query isMe {\n    seeMyProfile {\n      avatar\n      id\n      userName\n      isMe\n    }\n  }\n": types.IsMeDocument,
+    "\n  mutation join(\n    $userName: String!\n    $firstName: String!\n    $email: String!\n    $password: String!\n    $lastName: String\n  ) {\n    createUser(\n      userName: $userName\n      firstName: $firstName\n      email: $email\n      password: $password\n      lastName: $lastName\n    ) {\n      error\n      ok\n    }\n  }\n": types.JoinDocument,
     "\n  mutation login($userName: String!, $password: String!) {\n    login(userName: $userName, password: $password) {\n      token\n      ok\n      error\n    }\n  }\n": types.LoginDocument,
 };
 
@@ -30,6 +32,14 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query isMe {\n    seeMyProfile {\n      avatar\n      id\n      userName\n      isMe\n    }\n  }\n"): (typeof documents)["\n  query isMe {\n    seeMyProfile {\n      avatar\n      id\n      userName\n      isMe\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation join(\n    $userName: String!\n    $firstName: String!\n    $email: String!\n    $password: String!\n    $lastName: String\n  ) {\n    createUser(\n      userName: $userName\n      firstName: $firstName\n      email: $email\n      password: $password\n      lastName: $lastName\n    ) {\n      error\n      ok\n    }\n  }\n"): (typeof documents)["\n  mutation join(\n    $userName: String!\n    $firstName: String!\n    $email: String!\n    $password: String!\n    $lastName: String\n  ) {\n    createUser(\n      userName: $userName\n      firstName: $firstName\n      email: $email\n      password: $password\n      lastName: $lastName\n    ) {\n      error\n      ok\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -5,4 +5,6 @@ export interface IInputValues {
   email?: string;
   checkPass?: string;
   result?: string;
+  firstName: string;
+  lastName: string;
 }

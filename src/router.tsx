@@ -5,6 +5,7 @@ import Join from "./pages/Join/Join";
 import {TOKEN} from "./shared";
 import Home from "./pages/Home/Home";
 
+const TOKEN_EXISTS = Boolean(localStorage.getItem(TOKEN));
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: Boolean(localStorage.getItem(TOKEN)) ? <Home /> : <Login />,
+        element: TOKEN_EXISTS ? <Home /> : <Login />,
       },
       {
         path: "/join",

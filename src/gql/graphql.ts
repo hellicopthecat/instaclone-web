@@ -35,36 +35,6 @@ export type CreateAccountResult = {
   ok: Scalars['Boolean']['output'];
 };
 
-export type CreateCommentResult = {
-  __typename?: 'CreateCommentResult';
-  error?: Maybe<Scalars['String']['output']>;
-  ok: Scalars['Boolean']['output'];
-};
-
-export type DeleteCommentResult = {
-  __typename?: 'DeleteCommentResult';
-  error?: Maybe<Scalars['String']['output']>;
-  ok: Scalars['Boolean']['output'];
-};
-
-export type DeletePhotoResult = {
-  __typename?: 'DeletePhotoResult';
-  error?: Maybe<Scalars['String']['output']>;
-  ok: Scalars['Boolean']['output'];
-};
-
-export type EditPhotoResult = {
-  __typename?: 'EditPhotoResult';
-  error?: Maybe<Scalars['String']['output']>;
-  ok: Scalars['Boolean']['output'];
-};
-
-export type FollowUserResult = {
-  __typename?: 'FollowUserResult';
-  error?: Maybe<Scalars['String']['output']>;
-  ok: Scalars['Boolean']['output'];
-};
-
 export type Hashtag = {
   __typename?: 'Hashtag';
   createAt: Scalars['String']['output'];
@@ -101,19 +71,19 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createComment: CreateCommentResult;
+  createComment: MutationResponse;
   createUser: CreateAccountResult;
-  deleteComment: DeleteCommentResult;
-  deletePhoto: DeletePhotoResult;
-  editComment: EditCommentResult;
-  editPhoto?: Maybe<EditPhotoResult>;
+  deleteComment: MutationResponse;
+  deletePhoto: MutationResponse;
+  editComment: MutationResponse;
+  editPhoto?: Maybe<MutationResponse>;
   editProfile: EditResult;
-  followUser?: Maybe<FollowUserResult>;
+  followUser?: Maybe<MutationResponse>;
   login: LoginResult;
   readMessage: MutationResponse;
   sendMessage: MutationResponse;
-  toggleLikePhoto?: Maybe<ToggleLikePhotoResult>;
-  unFollowUser?: Maybe<UnfollowUserResult>;
+  toggleLikePhoto?: Maybe<MutationResponse>;
+  unFollowUser?: Maybe<MutationResponse>;
   uploadPhoto?: Maybe<Photo>;
 };
 
@@ -230,6 +200,7 @@ export type Query = {
   seeFollowers: SeeFollowersResult;
   seeFollowing: SeeFollowingResult;
   seeHashtag?: Maybe<Hashtag>;
+  seeMyProfile: User;
   seePhoto?: Maybe<Photo>;
   seePhotoComments?: Maybe<Array<Maybe<Comment>>>;
   seePhotoLikes?: Maybe<Array<Maybe<User>>>;
@@ -317,7 +288,7 @@ export type UnfollowUserResult = {
 
 export type User = {
   __typename?: 'User';
-  avatar?: Maybe<Scalars['Upload']['output']>;
+  avatar?: Maybe<Scalars['String']['output']>;
   bio?: Maybe<Scalars['String']['output']>;
   createAt: Scalars['String']['output'];
   email: Scalars['String']['output'];
@@ -333,11 +304,6 @@ export type User = {
   totalFollowing: Scalars['Int']['output'];
   updatedAt: Scalars['String']['output'];
   userName: Scalars['String']['output'];
-};
-
-
-export type UserAvatarArgs = {
-  file: Scalars['Upload']['input'];
 };
 
 export type EditCommentResult = {
@@ -375,11 +341,21 @@ export type SeeFollowingResult = {
   totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
-export type ToggleLikePhotoResult = {
-  __typename?: 'toggleLikePhotoResult';
-  error?: Maybe<Scalars['String']['output']>;
-  ok: Scalars['Boolean']['output'];
-};
+export type IsMeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IsMeQuery = { __typename?: 'Query', seeMyProfile: { __typename?: 'User', avatar?: string | null, id: number, userName: string, isMe: boolean } };
+
+export type JoinMutationVariables = Exact<{
+  userName: Scalars['String']['input'];
+  firstName: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  lastName?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type JoinMutation = { __typename?: 'Mutation', createUser: { __typename?: 'CreateAccountResult', error?: string | null, ok: boolean } };
 
 export type LoginMutationVariables = Exact<{
   userName: Scalars['String']['input'];
@@ -390,4 +366,6 @@ export type LoginMutationVariables = Exact<{
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'loginResult', token?: string | null, ok: boolean, error?: string | null } };
 
 
+export const IsMeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"isMe"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"seeMyProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"avatar"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}},{"kind":"Field","name":{"kind":"Name","value":"isMe"}}]}}]}}]} as unknown as DocumentNode<IsMeQuery, IsMeQueryVariables>;
+export const JoinDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"join"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userName"}}},{"kind":"Argument","name":{"kind":"Name","value":"firstName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}}},{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}},{"kind":"Argument","name":{"kind":"Name","value":"lastName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}}]}}]}}]} as unknown as DocumentNode<JoinMutation, JoinMutationVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userName"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}},{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;

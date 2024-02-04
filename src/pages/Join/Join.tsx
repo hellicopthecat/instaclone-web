@@ -9,12 +9,68 @@ import {GotoLogin, JoinFormCont, JoinWrapper, SubTitle} from "./Join.style";
 import {IInputValues} from "../../types/type";
 import {Form} from "../../styles/styles";
 import PageTitle from "../../components/PageTitle";
+import {FetchResult, gql, useMutation} from "@apollo/client";
+import {CreateAccountResult, Mutation} from "../../gql/graphql";
+import {useNavigate} from "react-router-dom";
+const JOIN_MUTATION = gql`
+  mutation join(
+    $userName: String!
+    $firstName: String!
+    $email: String!
+    $password: String!
+    $lastName: String
+  ) {
+    createUser(
+      userName: $userName
+      firstName: $firstName
+      email: $email
+      password: $password
+      lastName: $lastName
+    ) {
+      error
+      ok
+    }
+  }
+`;
 
 const Join = () => {
-  const {register, handleSubmit} = useForm<IInputValues>({
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: {errors, isValid},
+    setError,
+    clearErrors,
+  } = useForm<IInputValues>({
     mode: "onChange",
   });
-  const onSubmit: SubmitHandler<IInputValues> = (event) => {};
+
+  const onCompleted = (data: Mutation) => {
+    const {
+      createUser: {ok, error},
+    } = data;
+    if (!ok) {
+      setError("result", {message: error + ""});
+      return;
+    }
+    navigate(routerName.home, {state: {message: "회원가입 완료"}});
+  };
+
+  const [join, {loading}] = useMutation(JOIN_MUTATION, {
+    onCompleted,
+  });
+  const handleJoin: SubmitHandler<IInputValues> = async (event) => {
+    if (loading) {
+      return;
+    }
+    const {userName, firstName, lastName, password, email, checkPass} =
+      getValues();
+
+    await join({
+      variables: {userName, password, firstName, email, lastName},
+    });
+  };
   return (
     <>
       <PageTitle title="회원가입" />
@@ -26,17 +82,23 @@ const Join = () => {
               <SubTitle>
                 회원가입을 하여 당신의 친구들의 사진과 영상을 시청하세요!
               </SubTitle>
-              <Form onSubmit={handleSubmit(onSubmit)}>
+              <Form onSubmit={handleSubmit(handleJoin)}>
                 <legend hidden>회원가입</legend>
                 <AInput
                   register={register}
-                  inputId="userId"
+                  inputId="userName"
                   inputText="ID"
                   inputType="text"
                 />
                 <AInput
                   register={register}
-                  inputId="userName"
+                  inputId="firstName"
+                  inputText="성"
+                  inputType="text"
+                />
+                <AInput
+                  register={register}
+                  inputId="lastName"
                   inputText="이름"
                   inputType="text"
                 />
