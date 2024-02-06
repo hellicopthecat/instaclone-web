@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     *{
         box-sizing:border-box;
     }
+    
     input{
       border:1px solid rgba(0,0,0,0.1);
       border-radius:5px;

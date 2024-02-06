@@ -19,13 +19,10 @@ const useUser = () => {
   });
   useEffect(() => {
     if (error && data === undefined) {
-      console.log(error);
       logOutUser();
     }
   }, [data, error]);
-  useEffect(() => {
-    console.log(hasToken);
-  }, [hasToken]);
+  useEffect(() => {}, [hasToken]);
   return {data};
 };
 export default useUser;
